@@ -1,9 +1,6 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        magazine_chars = list(magazine)
-        for char in ransomNote:
-            if char in magazine_chars:
-                magazine_chars.remove(char)
-            else:
+        for i in set(ransomNote):
+            if ransomNote.count(i) > magazine.count(i):
                 return False
         return True
