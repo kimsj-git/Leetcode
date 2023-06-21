@@ -1,15 +1,14 @@
 class Solution:
     def reorderLogFiles(self, logs: List[str]) -> List[str]:
+        logs = [log.split() for log in logs]
         letter_logs = []
         digit_logs = []
         for log in logs:
-            words = list(log.split())
-            if words[1].isalpha():
-                letter_logs.append(words)
+            if log[1].isalpha():
+                letter_logs.append(log)
             else:
-                digit_logs.append(words)
+                digit_logs.append(log)
 
         letter_logs.sort(key=lambda x: [x[1:], x[0]])
-        total_logs = letter_logs + digit_logs
 
-        return [' '.join(word) for word in total_logs]
+        return [' '.join(log) for log in letter_logs + digit_logs]
