@@ -4,14 +4,8 @@ class Solution {
             return false
         }
         
-        val offsets = goal.indices.mapNotNull { 
-            if (goal[it] == s[0]) it else null
+        return goal.indices.any { offset ->
+            s.withIndex().all { (i, char) -> char == goal[(i + offset) % goal.length] }
         }
-        for (offset in offsets) {
-            if (s.indices.all { s[it] == goal[(it + offset) % s.length] }) {
-                return true
-            }
-        }
-        return false
     }
 }
